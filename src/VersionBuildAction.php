@@ -17,7 +17,7 @@ class VersionBuildAction
 
     public function getVersionInfo()
     {
-        if(config('app.env') == 'local' || config('app.env') == 'testing' || config('app.env') == 'staging') {
+        if(in_array(config('app.env'), ['local', 'testing', 'staging'])) {
             return $this->getLastTag().'-'.$this->getLastCommitHash();
         } else {
             return $this->getLastTag();
