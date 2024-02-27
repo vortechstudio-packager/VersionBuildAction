@@ -24,6 +24,15 @@ class VersionBuildAction
         }
     }
 
+    public function getLabelEnv(): ?string
+    {
+        return match (config('app.env')) {
+            'local' => "<span class='badge badge-secondary'>Local</span>",
+            'testing' || 'staging' => "<span class='badge badge-warning'>Testing</span>",
+            default => null
+        };
+    }
+
     private  function getLastTag()
     {
         $response = \Http::withToken($this->api_key)
