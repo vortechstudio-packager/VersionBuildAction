@@ -5,6 +5,7 @@ namespace Vortechstudio\VersionBuildAction;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Vortechstudio\VersionBuildAction\Commands\VersionBuildActionCommand;
+use Vortechstudio\VersionBuildAction\Commands\VersionPublishCommand;
 
 class VersionBuildActionServiceProvider extends PackageServiceProvider
 {
@@ -18,6 +19,7 @@ class VersionBuildActionServiceProvider extends PackageServiceProvider
         $package
             ->name('versionbuildaction')
             ->hasConfigFile()
-            ->hasCommand(VersionBuildActionCommand::class);
+            ->hasCommand(VersionBuildActionCommand::class)
+            ->hasCommand(VersionPublishCommand::class);
     }
 }
