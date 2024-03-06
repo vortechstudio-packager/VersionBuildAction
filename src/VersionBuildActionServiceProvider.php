@@ -17,6 +17,7 @@ class VersionBuildActionServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('versionbuildaction')
-            ->hasConfigFile();
+            ->hasConfigFile()
+            ->hasCommand(VersionBuildActionCommand::class);
     }
 }
