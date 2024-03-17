@@ -34,7 +34,7 @@ class VersionBuildActionCommand extends Command
             $this->info("La version la plus récente est $latestTag.");
             $this->compareCommit($latestTag);
         } catch (HttpResponseException $exception) {
-            dd($exception);
+            $this->alert('Impossible de trouver la version la plus récente');
         }
     }
 

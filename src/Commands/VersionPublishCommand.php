@@ -33,7 +33,7 @@ class VersionPublishCommand extends Command
 
             return $response[0]->name;
         } catch (HttpResponseException $exception) {
-            dd($exception);
+            $this->alert('Impossible de trouver la version la plus récente');
         }
     }
 
