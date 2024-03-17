@@ -45,8 +45,9 @@ class VersionBuildActionCommand extends Command
             ->get("https://api.github.com/repos/{$this->owner}/{$this->repo}/compare/$lastTag...production")
             ->json();
         $commits = array_map(function ($commit) {
-
-            return $commit['commit']['message'];
+            if (! str_contains($commit['commit']['message'], 'Merge pull request')) {
+                return $commit['commit']['message'];
+            }
         }, $commitsResponse['commits']);
 
         $hasFeature = false;
@@ -66,8 +67,11 @@ class VersionBuildActionCommand extends Command
 
             if ($hasBreakingChange) {
                 $major++;
+                $minor = 0;
+                $patch = 0;
             } elseif ($hasFeature) {
                 $minor++;
+                $patch = 0;
             } elseif ($hasFix) {
                 $patch++;
             }
