@@ -38,7 +38,11 @@ class VersionBuildAction
         $response = \Http::withToken($this->api_key)
             ->get('https://api.github.com/repos/'.$this->owner.'/'.$this->repository.'/releases/latest');
 
-        return $response['tag_name'];
+        if($response) {
+            return $response['tag_name'];
+        } else {
+            return "0.0.0";
+        }
     }
 
     private function getLastCommitHash()
@@ -46,6 +50,10 @@ class VersionBuildAction
         $response = \Http::withToken($this->api_key)
             ->get('https://api.github.com/repos/'.$this->owner.'/'.$this->repository.'/commits/master');
 
-        return substr($response['sha'], 0, 7);
+        if($response) {
+            return substr($response['sha'], 0, 7);
+        } else {
+            return "null";
+        }
     }
 }
