@@ -68,7 +68,7 @@ class VersionBuildAction
             ->get('https://api.github.com/repos/'.$this->owner.'/'.$this->repository.'/commits/master');
 
         if($response) {
-            Cache::put($cacheKey, $response['sha'], $ttl);
+            Cache::put($cacheKey, substr($response['sha'], 0, 7), $ttl);
             return substr($response['sha'], 0, 7);
         } else {
             return "Erreur lors de la recuperation du dernier commit";
