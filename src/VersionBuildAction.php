@@ -48,8 +48,12 @@ class VersionBuildAction
             ->get('https://api.github.com/repos/'.$this->owner.'/'.$this->repository.'/releases/latest');
 
         if($response) {
-            Cache::put($cacheKey, $response['tag_name'], $ttl);
-            return $response['tag_name'];
+            if(isset($response['tag_name'])) {
+                Cache::put($cacheKey, $response['tag_name'], $ttl);
+                return $response['tag_name'];
+            } else {
+                return "0.0.0";
+            }
         } else {
             return "Erreur lors de la recuperation du dernier tag";
         }
@@ -68,8 +72,12 @@ class VersionBuildAction
             ->get('https://api.github.com/repos/'.$this->owner.'/'.$this->repository.'/commits/master');
 
         if($response) {
-            Cache::put($cacheKey, substr($response['sha'], 0, 7), $ttl);
-            return substr($response['sha'], 0, 7);
+            if(isset($response['sha'])) {
+                Cache::put($cacheKey, substr($response['sha'], 0, 7), $ttl);
+                return substr($response['sha'], 0, 7);
+            } else {
+                return "incomplete";
+            }
         } else {
             return "Erreur lors de la recuperation du dernier commit";
         }
