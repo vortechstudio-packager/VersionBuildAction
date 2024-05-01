@@ -2,6 +2,10 @@
 
 All notable changes to `VersionBuildAction` will be documented in this file.
 
+## 1.1.5.1 - 2024-04-28
+
+**Full Changelog**: https://github.com/vortechstudio-packager/VersionBuildAction/compare/1.1.5...1.1.5.1
+
 ## 1.1.5 - 2024-04-28
 
 **Full Changelog**: https://github.com/vortechstudio-packager/VersionBuildAction/compare/1.1.4...1.1.5
